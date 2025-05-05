@@ -1,8 +1,9 @@
 # curling/league_editor.py
 
-from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QLineEdit, QPushButton
+from PyQt5.QtWidgets import QDialog, QLabel, QVBoxLayout, QLineEdit, QPushButton
 
-class LeagueEditor(QWidget):
+
+class LeagueEditor(QDialog):
     def __init__(self, league):
         super().__init__()
         self.league = league
@@ -29,4 +30,4 @@ class LeagueEditor(QWidget):
         new_name = self.name_input.text()
         if new_name:
             self.league.name = new_name
-            self.close()  # Close the editor window after saving
+            self.accept()  # Close dialog and return Accepted

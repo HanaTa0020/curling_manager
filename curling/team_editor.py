@@ -1,6 +1,9 @@
-from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout
+# curling/team_editor.py
 
-class TeamEditor(QWidget):
+from PyQt5.QtWidgets import QDialog, QLabel, QVBoxLayout
+
+
+class TeamEditor(QDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Team Editor")

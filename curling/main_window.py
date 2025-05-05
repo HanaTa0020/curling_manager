@@ -2,7 +2,7 @@
 
 from PyQt5.QtWidgets import (
     QMainWindow, QWidget, QPushButton, QListWidget, QVBoxLayout,
-    QHBoxLayout, QFileDialog, QMessageBox, QInputDialog
+    QHBoxLayout, QInputDialog
 )
 from .league_editor import LeagueEditor
 from .models import League, Team, Member
@@ -58,9 +58,10 @@ class MainWindow(QMainWindow):
             league = self.leagues[index]
 
             editor = LeagueEditor(league)
-            editor.setWindowModality(True)  # Block main window until done
-            editor.show()
-            editor.destroyed.connect(self.update_league_list)  # Refresh list after closing
+            result = editor.exec_()  # Open as dialog (modal)
+
+            if result == editor.Accepted:  # Only update if user clicked Save
+                self.update_league_list()
 
     def delete_league(self):
         selected_items = self.league_list.selectedItems()
